@@ -1,26 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from 'react'
+import './App.css'
+import Acсordion from "./Acсordion";
+import {Reting} from "./components/Reting";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    console.log('App render')
+    return (
+        <div>
+            <input value={"yo"} type={"password"}/>
+            App title
+            App title
+            <PageTitle title={"App title"}/>
+            <Reting value={0}/>
+            <Reting value={1}/>
+            <Reting value={2}/>
+            <Reting value={3}/>
+            <Reting value={4}/>
+            <Reting value={5}/>
+            <PageTitle title={"App title@"}/>
+            <Acсordion  titleValue={"Acсordion title"} collapsed={false}/>
+            <Acсordion  titleValue={"Acсordion title2"} collapsed={true}/>
+        </div>
+    )
 }
 
-export default App;
+type PageTitlePropsType ={
+    title: string
+}
+
+function PageTitle(props:PageTitlePropsType) {
+    return <div>
+        <h1>props.title</h1>
+    </div>
+}
+
+export default App
