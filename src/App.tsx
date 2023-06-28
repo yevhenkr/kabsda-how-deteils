@@ -2,13 +2,14 @@ import React from 'react'
 import './App.css'
 import Acсordion from "./Acсordion";
 import {Reting} from "./components/Reting";
+import OnOff from './components/OnOff/OnOff';
+
 
 function App() {
     console.log('App render')
     return (
         <div>
             <input value={"yo"} type={"password"}/>
-            App title
             App title
             <PageTitle title={"App title"}/>
             <Reting value={0}/>
@@ -20,6 +21,7 @@ function App() {
             <PageTitle title={"App title@"}/>
             <Acсordion  titleValue={"Acсordion title"} collapsed={false}/>
             <Acсordion  titleValue={"Acсordion title2"} collapsed={true}/>
+            <OnOff toggle={true}  />
         </div>
     )
 }
