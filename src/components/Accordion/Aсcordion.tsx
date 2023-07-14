@@ -4,18 +4,18 @@ import '../../App.css'
 
 type AcсordionPropsType = {
     titleValue: string
+    collapsed: boolean
+    onChange: () => void
 }
 
 export default function Aсcordion(props: AcсordionPropsType) {
-let [acсordion, accordionSet]= useState(true)
-    const acсordionHandler =()=>{
-        accordionSet(!acсordion)
-    }
+
     return <>
-        <AcсordionTitle callBack={acсordionHandler} titleValue={props.titleValue}/>
-        {acсordion && <AcсordionBody/>}
+        <AcсordionTitle onChange={props.onChange} titleValue={props.titleValue}/>
+        {props.collapsed && <AcсordionBody/>}
     </>
 }
+
 function AcсordionBody() {
     return <ul>
         <li>1</li>
@@ -26,9 +26,9 @@ function AcсordionBody() {
 
 type AcсordionTitlePropsType = {
     titleValue: string
-    callBack: ()=>void
+    onChange: () => void
 }
 
 function AcсordionTitle(props: AcсordionTitlePropsType) {
-    return <h3 onClick={props.callBack}>{props.titleValue}</h3>
+    return <h3 onClick={props.onChange}>{props.titleValue}</h3>
 }

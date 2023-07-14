@@ -5,16 +5,20 @@ import {RatingValueType, Reting} from './components/Reting/Reting';
 import OnOff from './components/OnOff/OnOff';
 import UncontroldAcсordion from './components/Accordion/UncontroldAcсordion';
 import {UncontrolReting} from './components/Reting/UncontrolReting';
+import UnControlledOnOff from './components/UnControlledOnOff/UnControlledOnOff';
+import {log} from 'util';
 
 
 function App() {
-    console.log('App render')
     let [ratingValue, setRatingValue] = useState<RatingValueType>(3)
     let [accordionState, accordionStateSet] = useState(false)
+    let [swithOn, setSwithOn] = useState<boolean>(false)
+
     return (
         <div>
-            <Aсcordion titleValue="Acordion title2"/>
-
+            {/*<OnOff on={swithOn} onChange={(on)=> {setSwithOn(on)}}/>*/}
+            <UnControlledOnOff onChange={(on)=> {setSwithOn(on)}}/>{swithOn.toString()}
+            {/*<Aсcordion titleValue="Acordion title2" collapsed={collapsed} onChange={() => {accordionCollabsedSet(!collapsed)}}/>*/}
             {/*<UncontroldAcсordion  titleValue={"Acсordion title"}/>*/}
             {/*<UncontrolReting />*/}
             {/*    <Acсordion  titleValue={"Acсordion title2"} callBack={accordionStateSet(!ratingValue)} />*/}
