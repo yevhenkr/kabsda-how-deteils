@@ -12,8 +12,8 @@ function UncontroldAcсordion(props: AcсordionPropsType) {
         setCollapsed(!collapsed)
     }
         return <>
-            <button onClick={collapsedHandler}>x</button>
-            <AcсordionTitle titleValue={props.titleValue}/>
+            <AcсordionTitle titleValue={props.titleValue} onClick={()=>  setCollapsed(!collapsed)}/>
+            {/*<button onClick={collapsedHandler}>x</button>*/}
             {/*{!props.collapsed && <AcсordionBody/>}*/}
             {collapsed  && <AcсordionBody/> }
         </>
@@ -21,10 +21,11 @@ function UncontroldAcсordion(props: AcсordionPropsType) {
 
 type AcсordionTitlePropsType = {
     titleValue: string
+    onClick: ()=>void
 }
 
 function AcсordionTitle(props: AcсordionTitlePropsType) {
-    return <h3>{props.titleValue}</h3>
+    return <h3 onClick={props.onClick}>{props.titleValue}</h3>
 }
 
 function AcсordionBody() {
