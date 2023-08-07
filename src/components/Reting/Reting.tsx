@@ -25,7 +25,7 @@ type StartPropsType = {
     onClick: (value: SetStateAction<RatingValueType>) => void
 }
 
-function Star(props: StartPropsType) {
+export function Star(props: StartPropsType) {
     console.log(props.value)
     return <span onClick={()=>props.onClick(props.value)}>
         {props.selected ? <b>star </b> : 'star'}
