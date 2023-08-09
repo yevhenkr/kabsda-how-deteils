@@ -7,6 +7,7 @@ import UncontroldAcсordion from './components/Accordion/UncontroldAcсordion';
 import {UncontrolReting} from './components/Reting/UncontrolReting';
 import UnControlledOnOff from './components/UnControlledOnOff/UnControlledOnOff';
 import {log} from 'util';
+import {Select, InputSelectProps} from './components/Select/Select';
 
 
 function App() {
@@ -14,8 +15,23 @@ function App() {
     let [accordionState, accordionStateSet] = useState(false)
     let [swithOn, setSwithOn] = useState<boolean>(false)
 
+    let [inputSelect, setInputSelect] = useState<string>('option1')
+    const options = [
+        { value: '1', title: 'Option 1' },
+        { value: '2', title: 'Option 2' },
+        { value: '3', title: 'Option 3' },
+    ];
+    let inputSelectDate: InputSelectProps= {
+        items: options,
+        value: inputSelect,
+        onChange: (selectedValue: string) => forInput(selectedValue),
+    }
+function forInput(selectedValue: string){
+    setInputSelect(selectedValue)
+}
     return (
         <div>
+            <Select items={options} value={inputSelectDate.value} onChange={inputSelectDate.onChange}/>
             {/*<OnOff on={swithOn} onChange={(on)=> {setSwithOn(on)}}/>*/}
             <UnControlledOnOff onChange={(on)=> {setSwithOn(on)}}/>{swithOn.toString()}
             {/*<Aсcordion titleValue="Acordion title2" collapsed={collapsed} onChange={() => {accordionCollabsedSet(!collapsed)}}/>*/}
