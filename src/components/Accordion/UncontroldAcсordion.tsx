@@ -1,27 +1,22 @@
-import React, {useState} from 'react'
+import React, {useReducer, useState} from 'react'
 import '../../App.css'
+import {reducer, TOGGLE_COLLAPSED} from './reducer';
 
 type AcсordionPropsType = {
     titleValue: string
-    // collapsed: boolean
 }
 
 function UncontroldAcсordion(props: AcсordionPropsType) {
-    let[collapsed, setCollapsed]=useState(false)
-    const collapsedHandler=()=>{
-        setCollapsed(!collapsed)
-    }
-        return <>
-            <AcсordionTitle titleValue={props.titleValue} onClick={()=>  setCollapsed(!collapsed)}/>
-            {/*<button onClick={collapsedHandler}>x</button>*/}
-            {/*{!props.collapsed && <AcсordionBody/>}*/}
-            {collapsed  && <AcсordionBody/> }
-        </>
+    let [state, dispatch] = useReducer(reducer, {collapsed: false})
+    return <>
+        <AcсordionTitle titleValue={props.titleValue} onClick={() => dispatch({type: TOGGLE_COLLAPSED})}/>
+        {!state.collapsed && <AcсordionBody/>}
+    </>
 }
 
 type AcсordionTitlePropsType = {
     titleValue: string
-    onClick: ()=>void
+    onClick: () => void
 }
 
 function AcсordionTitle(props: AcсordionTitlePropsType) {
@@ -29,7 +24,7 @@ function AcсordionTitle(props: AcсordionTitlePropsType) {
 }
 
 function AcсordionBody() {
-    console.log("AccordionBody")
+    console.log('AccordionBody')
     return <ul>
         <li>1</li>
         <li>2</li>

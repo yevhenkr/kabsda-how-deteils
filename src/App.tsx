@@ -31,11 +31,11 @@ function forInput(selectedValue: string){
 }
     return (
         <div>
-            <Select items={options} value={inputSelectDate.value} onChange={inputSelectDate.onChange}/>
+            {/*<Select items={options} value={inputSelectDate.value} onChange={inputSelectDate.onChange}/>*/}
             {/*<OnOff on={swithOn} onChange={(on)=> {setSwithOn(on)}}/>*/}
-            <UnControlledOnOff onChange={(on)=> {setSwithOn(on)}}/>{swithOn.toString()}
+            {/*<UnControlledOnOff onChange={(on)=> {setSwithOn(on)}}/>{swithOn.toString()}*/}
             {/*<Aсcordion titleValue="Acordion title2" collapsed={collapsed} onChange={() => {accordionCollabsedSet(!collapsed)}}/>*/}
-            {/*<UncontroldAcсordion  titleValue={"Acсordion title"}/>*/}
+            <UncontroldAcсordion  titleValue={"User"}/>
             {/*<UncontrolReting />*/}
             {/*    <Acсordion  titleValue={"Acсordion title2"} callBack={accordionStateSet(!ratingValue)} />*/}
             {/*<Reting value={ratingValue} onClick={setRatingValue}/>*/}
