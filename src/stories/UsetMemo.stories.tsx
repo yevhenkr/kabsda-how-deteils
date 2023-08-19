@@ -1,4 +1,5 @@
 import React, {useMemo, useState} from 'react';
+import {ItemsType, Select} from '../components/Select/Select';
 
 export default {
     title: 'ReactMemm'
@@ -19,10 +20,10 @@ export const DifficultCounting = () => {
         let tempResult = 1
         for (let i = 1; i <= a; i++) {
             let fake = 0
-            while (fake < 100000000) {
-                fake++;
-                const fakeValue = Math.random();
-            }
+            // while (fake < 100000000) { //Замедлит віполнеие
+            //     fake++;
+            //     const fakeValue = Math.random();
+            // }
             tempResult = tempResult * i
         }
         return tempResult
@@ -73,4 +74,62 @@ export const HalpsReactMemo = () => {
         {counter}
         <Users users={newArray}/>
     </>
+}
+
+export interface TestType extends ItemsType {
+    countryId: number
+}
+
+const BelorashaID = 1
+const PolandID = 2
+export const HalpsSelectMemo = () => {
+    debugger
+    let [cityName, setCityName] = useState('Minsk');
+    let [typeCountry, setTypeCountry] = useState(1)
+    const [cities, setCities] = useState<TestType[]>([
+        {value: '1', title: 'Minsk', countryId: BelorashaID},
+        {value: '2', title: 'Mozir', countryId: BelorashaID},
+        {value: '3', title: 'Grodno', countryId: BelorashaID},
+        {value: '4', title: 'Warchava', countryId: PolandID},
+        {value: '5', title: 'Vrotslav', countryId: PolandID},
+        {value: '6', title: 'Krakov', countryId: PolandID},
+        {value: '7', title: 'Gdansk', countryId: PolandID}
+    ])
+
+    const handleOnChange = (itemName: string) => {
+        setCityName(itemName);
+    }
+
+    const changeCountry = (idCountry: number) => {
+        setTypeCountry(idCountry)
+    }
+    const citiesFromCountry = useMemo(() => {
+        return cities.filter(city =>
+            (city.countryId === typeCountry) ? {
+                value: city.title,
+                title: city.title
+            } : false
+        )
+    }, [typeCountry])
+
+    const citiesWithR = useMemo(() => {
+        return cities.filter(u => u.title.toLowerCase().indexOf('r') > -1);
+    }, [cities])
+    const addCity = () => { //Users пересуеться
+        setCities([...cities, {value: '1', title: 'Mirgorod', countryId: PolandID}])
+    }
+    const addCityWithOutR = () => {
+        setCities([...cities, {value: '1', title: 'Stockgolm', countryId: PolandID}])
+    }
+    return <>
+        <button onClick={() => changeCountry(BelorashaID)}>Coutry Belorasha</button>
+        <button onClick={() => changeCountry(PolandID)}>Coutry Poland</button>
+        <div><span>{citiesFromCountry.length}</span></div>
+        <Select value={cityName} items={citiesFromCountry} onChange={handleOnChange}/>
+
+        <button style={{display: 'flex', marginTop: '140px'}} onClick={addCity}>Add City WithR</button>
+        <button onClick={addCityWithOutR}>Add City WithOutR</button>
+        <div><span>{citiesWithR.length}</span></div>
+        <Select value={cityName} items={citiesWithR} onChange={handleOnChange}/>
+    </>;
 }

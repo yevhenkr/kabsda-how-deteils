@@ -1,7 +1,7 @@
 import React, {useState, ChangeEvent, KeyboardEvent, useEffect} from 'react';
 import s from './Select.module.css'
 
-type ItemsType = {
+export interface ItemsType {
     value: string;
     title: string;
 }
@@ -13,6 +13,7 @@ export type InputSelectProps = {
 }
 
 export const Select: React.FC<InputSelectProps> = (props: InputSelectProps) => {
+    console.log('Render Select = ', props.items)
     const [isActive, setIsActive] = useState(true)
     const [hoveredElementValue, setHoveredElementValue] = useState<string>(props.value)
 
@@ -68,8 +69,8 @@ export const Select: React.FC<InputSelectProps> = (props: InputSelectProps) => {
                     ))}
                 </select>
                 <div onKeyUp={onKeyUp} tabIndex={0}>
-                <span className={s.main} onClick={toggleItems}>
-                    {selectedItem && selectedItem.title}</span>
+                    {/*<span className={s.main} onClick={toggleItems}>*/}
+                    {/*    {selectedItem && selectedItem.title}</span>*/}
                     {isActive &&
                         <div className={s.items}>
                             {props.items.map(item => <div
