@@ -1,4 +1,4 @@
-import React, {useMemo, useState} from 'react';
+import React, {useCallback, useMemo, useState} from 'react';
 import {ItemsType, Select} from '../components/Select/Select';
 
 export default {
@@ -55,9 +55,9 @@ const UsersSecret = (props: { users: Array<string> }) => {
 
 const Users = React.memo(UsersSecret) //Users'component' в Exampele'component' не пересуеться если в него не прийдут новіен Props
 
-export const HalpsReactMemo = () => {
-    console.log('HalpsReactMemo')
 
+export const HelpsToReactMemo = () => {
+    console.log('HalpsReactMemo')
     const [counter, setCounter] = useState<number>(0)
     const [users, setUsers] = useState<Array<string>>(['Dimich', 'Eugena', 'Serga'])
 
@@ -69,12 +69,55 @@ export const HalpsReactMemo = () => {
         setUsers([...users, 'Sveta ' + new Date().getTime()])
     }
     return <>
-        <button onClick={() => {setCounter(counter + 1)}}>Add</button>
+        <button onClick={() => {
+            setCounter(counter + 1)
+        }}>Add
+        </button>
         <button onClick={() => addUser()}>Add user</button>
         {counter}
         <Users users={newArray}/>
     </>
 }
+export const LikeUseCallback = () => {
+    console.log('HelpsReactMemo')
+    const [counter, setCounter] = useState<number>(0)
+    const [books, setBooks] = useState<Array<string>>(['Bible', 'Abetka', 'LordOfTheRing'])
+
+    const addBook = () => {
+
+    }
+
+    const memoizedAddbook = useMemo(() => {
+        return ()=>{
+            setBooks([...books, 'Angular ' + new Date().getTime()])}
+    }, [books])
+
+    const memoizedAddbook2 = useCallback(() => {
+        {setBooks([...books, 'Angular ' + new Date().getTime()])}
+    }, [books])
+
+
+    return <>
+        <button onClick={() => {
+            setCounter(counter + 1)
+        }}>Add
+        </button>
+
+        {counter}
+        <Book addBook={memoizedAddbook}/>
+    </>
+}
+
+type BooksSecretType = {
+    addBook: () => void
+}
+const BooksSecret = (props: BooksSecretType) => {
+    console.log('Books Secret')
+    return <>
+        <button onClick={props.addBook}>Add book</button>
+    </>
+}
+const Book = React.memo(BooksSecret)
 
 export interface TestType extends ItemsType {
     countryId: number
