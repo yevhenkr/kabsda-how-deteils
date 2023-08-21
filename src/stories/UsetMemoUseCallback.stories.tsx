@@ -87,12 +87,12 @@ export const LikeUseCallback = () => {
 
     }
 
-    const memoizedAddbook = useMemo(() => {
+    const memoizedAddbook2 = useMemo(() => {
         return ()=>{
             setBooks([...books, 'Angular ' + new Date().getTime()])}
     }, [books])
 
-    const memoizedAddbook2 = useCallback(() => {
+    const memoizedAddbook = useCallback(() => {
         {setBooks([...books, 'Angular ' + new Date().getTime()])}
     }, [books])
 
