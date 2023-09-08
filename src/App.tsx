@@ -8,6 +8,7 @@ import {UncontrolReting} from './components/Reting/UncontrolReting';
 import UnControlledOnOff from './components/UnControlledOnOff/UnControlledOnOff';
 import {log} from 'util';
 import {Select, InputSelectProps} from './components/Select/Select';
+import {Clock} from "./components/Clock/Clock";
 
 
 function App() {
@@ -33,6 +34,7 @@ function App() {
 
     return (
         <div>
+            <Clock digitalMode={true}/>
             {/*<Select items={options} value={inputSelectDate.value} onChange={inputSelectDate.onChange}/>*/}
             {/*<OnOff on={swithOn} onChange={(on)=> {setSwithOn(on)}}/>*/}
             {/*<UnControlledOnOff onChange={(on)=> {setSwithOn(on)}}/>{swithOn.toString()}*/}
